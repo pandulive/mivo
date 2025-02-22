@@ -60,7 +60,7 @@ MainWindow::MainWindow(): m_VBox(Gtk::ORIENTATION_VERTICAL),
     sink = gst_element_factory_make("glimagesink", "sink");
 
     // Below is for Sony usb
-    if (!pip eline || !source || !capsfilter || !crop || !convert || !sink) {
+    if (!pipeline || !source || !capsfilter || !crop || !convert || !sink) {
         std::cerr << "Failed to create GStreamer elements." << std::endl;
         return;
     }
@@ -82,7 +82,7 @@ MainWindow::MainWindow(): m_VBox(Gtk::ORIENTATION_VERTICAL),
     // gst_caps_unref(caps); // Free the caps structure after setting it
 
     // Set default resolution to 1280x720 or 1920*1080
-    change_resolution(1920, 1080);
+    change_resolution(1280, 720);
 
     // Add and link elements for SonyUSB
     gst_bin_add_many(GST_BIN(pipeline), source, capsfilter, crop, convert, sink, nullptr);
